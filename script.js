@@ -26,28 +26,41 @@ console.log(ussAssembly)
 
 //Instantiate alien ships
 //----> create array of alien ships and remove once hull = 0???
-const alien1 = new alien("alien1", 0, 0, 0)
-console.log(alien1)
-// const alien2 = new alien("alien2", 1, 1, 1)
-// const alien3 = new alien("alien3", 1, 1, 1)
-// const alien4 = new alien("alien4", 1, 1, 1)
-// const alien5 = new alien("alien5", 1, 1, 1)
-// const alien6 = new alien("alien6", 1, 1, 1)
-// console.log(alien1, alien2, alien3, alien4, alien5, alien6)
+let alienfleet = []
+for (i = 0; i < 6; i++) { 
+    alienfleet.push(new alien(`Alien${i}`, 0, 0, 0))
+}
+console.log(alienfleet)
 //--------------------------------------------------------------
 // 2. QUERIES
 
-
 //----------------------------------------------------------
 //3. CALL/INVOKE FUNCTIONS
-//  ATTACK
+
+//THE 'ATTACK' BUTTON MAKES FOLLOWING HAPPEN:
+//  USS Assembly ATTACK
 if (Math.random() <= ussAssembly.accuracy) {
-    alien1.takedamage(ussAssembly.firepower)
+    alienfleet[0].takedamage(ussAssembly.firepower)
     console.log('You shot the enemy!')
-    console.log(alien1.hull)
-    if (alien1.hull <= 0) { 
-        console.log("The enemy has been neutralized")
-    }
+    console.log(alienfleet[0].hull)
+        if (alienfleet[0].hull <= 0) {     
+            console.log("An enemy ship has been neutralized")
+        }
     } else {
-        console.log ('Your shot missed!')
-}
+        console.log('Your shot missed!')
+    }
+// if USS assembly attacks, then Alien Attacks
+if (Math.random() <= alienfleet[0].accuracy) { 
+    ussAssembly.takedamage(alienfleet[0].firepower)
+    console.log('The alien ship shot you!')
+    console.log(ussAssembly.hull)
+        if (ussAssembly.hull <= 0) {
+            console.log("The enemy shot you!")
+   
+        }
+    } else {
+        console.log('The enemy missed! No damage')
+    }
+
+
+//left off at making an array of aliens.... that way array can be updated in code later, as aliens die.
