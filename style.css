@@ -1,7 +1,7 @@
 body {
     background-color: gray;
     width: 100%;
-    margin-top: 20em;
+    margin-top: 15em;
 }
 
 #gamespace {
@@ -13,6 +13,7 @@ body {
     margin: auto;
     width: 80%;
     height: 200px;
+    border-radius: 30px;
 }
 
 #aliens {
@@ -26,4 +27,20 @@ body {
 
 .alien {
     height: 50px;
+}
+
+#controlpanel {
+    display: flex;
+    justify-content: center;
+    margin: 40px;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 50%;
+    border: 5px solid black;
 }
