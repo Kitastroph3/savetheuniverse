@@ -22,45 +22,68 @@ class alien extends ship{
 
 //Make USSAssembly
 const ussAssembly = new ship("USS Assembly", 20, 5, .7)
-console.log(ussAssembly)
-
 //Instantiate alien ships
 //----> create array of alien ships and remove once hull = 0???
-let alienfleet = []
-for (i = 0; i < 6; i++) { 
+const alienfleet = []
+for (let i = 0; i < 6; i++) { 
     alienfleet.push(new alien(`Alien${i}`, 0, 0, 0))
 }
-console.log(alienfleet)
+
+//next alien removes alien ship from beginning of the array
+const nextalien = function () {
+    if (alienfleet.length > 0) {
+        alienfleet.shift()
+        return `The alien fleet has ${(alienfleet.length)+1} remaining ships`
+    } else { 
+        return "You Win!"
+    }
+}
+
 //--------------------------------------------------------------
 // 2. QUERIES
-
+// const fleebtn = document.querySelector('#fly')
 //----------------------------------------------------------
 //3. CALL/INVOKE FUNCTIONS
-
-//THE 'ATTACK' BUTTON MAKES FOLLOWING HAPPEN:
-//  USS Assembly ATTACK
-if (Math.random() <= ussAssembly.accuracy) {
-    alienfleet[0].takedamage(ussAssembly.firepower)
-    console.log('You shot the enemy!')
-    console.log(alienfleet[0].hull)
-        if (alienfleet[0].hull <= 0) {     
+//  2. you hit alien but do not kill them
+//      you get attacked
+//      if your hull = 0, you lose!
+//      make attack function?
+//  3. you miss the alien
+//      you get attacked
+//      if your hull = 0, you lose!
+    if (Math.random() <= ussAssembly.accuracy) {
+        // you shoot. enemy neutralized
+        alienfleet[0].takedamage(ussAssembly.firepower)
+        console.log('You shot the enemy!')
+        if (alienfleet[0].hull <= 0) {
             console.log("An enemy ship has been neutralized")
+            nextalien()
+        } else {
+            console.log("Hit landed! Enemy ship still active")
+            if (Math.random() <= alienfleet[0].accuracy) {
+                ussAssembly.takedamage(alienfleet[0].firepower)
+                if (ussAssembly.hull <= 0) {
+                    console.log("The enemy shot you!")
+                }
+            }
+            else {
+                console.log('The enemy missed! No damage')
+            }
         }
     } else {
         console.log('Your shot missed!')
-    }
-// if USS assembly attacks, then Alien Attacks
-if (Math.random() <= alienfleet[0].accuracy) { 
-    ussAssembly.takedamage(alienfleet[0].firepower)
-    console.log('The alien ship shot you!')
-    console.log(ussAssembly.hull)
-        if (ussAssembly.hull <= 0) {
-            console.log("The enemy shot you!")
-   
+        //your shot misses. alien attacks ussAssembly
+        if (Math.random() <= alienfleet[0].accuracy) {
+            ussAssembly.takedamage(alienfleet[0].firepower)
+            console.log('The alien ship shot you!')
+            if (ussAssembly.hull >= 1) {
+                console.log(ussAssembly)
+            } else {
+                console.log("you died")
+            }
+        } else {
+            console.log('The enemy missed! No damage')
         }
-    } else {
-        console.log('The enemy missed! No damage')
     }
-
-
-//left off at making an array of aliens.... that way array can be updated in code later, as aliens die.
+console.log(alienfleet)
+console.log(ussAssembly)
