@@ -50,7 +50,7 @@ const nextalien = function () {
     } 
 //--------------------------------------------------------------
 // 2. QUERIES
-// const fleebtn = document.querySelector('#fly')
+const fight = document.querySelector('#fight')
 //----------------------------------------------------------
 //3. CALL/INVOKE FUNCTIONS
 function attack() {
@@ -72,18 +72,7 @@ function attack() {
     } else if (alienfleet.length > 0 && Math.random() >= ussAssembly.accuracy) {
         console.log("your hit misses!")
         alienfleet[0].attack()
-    } else {
-        console.log("this is my bug and should be 'you win'")
+    // } else {
+    //     console.log("this is my bug and should be 'you win'")
     }
 }
-attack()
-attack()
-attack()
-attack()
-attack()
-attack()
-attack()
-attack()
-attack()
-console.log(alienfleet)
-console.log(ussAssembly)
