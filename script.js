@@ -26,6 +26,7 @@ class alien extends ship{
                 console.log('you got hit!')
             } else {
                 console.log("you died")
+                //play again?
             }
         } else {
             console.log('The enemy missed! No damage')
@@ -56,37 +57,35 @@ const fly = document.querySelector('#fly')
 //3. FUNCTIONS
 function attack() {
     //step 1: you shoot at alien
-    //  you hit alien
-    if (alienfleet.length > 0 && Math.random() < ussAssembly.accuracy) {
-        alienfleet[0].takedamage(ussAssembly.firepower)
-        console.log("You shot the alien ship!")
-        //A alien neutralized
-        if (alienfleet[0].hull <= 0) {
-            console.log("You neutralized an alien ship")
-            nextalien()
+    if (alienfleet.length > 0 ) { 
+        if (Math.random() < ussAssembly.accuracy) {
+            alienfleet[0].takedamage(ussAssembly.firepower)
+            console.log("You shot the alien ship!")
+            //A alien neutralized
+            if (alienfleet[0].hull <= 0) {
+                console.log("You neutralized an alien ship")
+                nextalien()
             //B alien ship survives and shoots at you
+            } else {
+                console.log("Hit landed... but it looks like enemys ship is still active")
+                //alien attacks
+                alienfleet[0].attack()
+            }
+            //C your attack misses
         } else {
-            console.log("Hit landed... but it looks like enemys ship is still active")
-            //alien attacks
+            console.log("your hit misses!")
             alienfleet[0].attack()
         }
-    } else if (alienfleet.length > 0 && Math.random() >= ussAssembly.accuracy) {
-        console.log("your hit misses!")
-        alienfleet[0].attack()
-        // } else if (alienfleet.length <= 0) {
-        //     winnerwinner()
-        // } 
-    } else {
-        console.log ("THIS IS MY BUG. Works if else/if statement, but not else only. then winner pops up occassionally when it shouldn't")
+    } else { 
+        console.log(winnerwinner())
     }
 }
-
 function flee() { 
-    console.log ("Phew that was close!")
+    console.log("Phew that was close!")
 }
 
 function winnerwinner() {
-    console.log ("You win!")
+    return "You win!"
 }
 
 function alienstats() { 
