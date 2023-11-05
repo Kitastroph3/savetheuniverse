@@ -73,9 +73,12 @@ function attack() {
     } else if (alienfleet.length > 0 && Math.random() >= ussAssembly.accuracy) {
         console.log("your hit misses!")
         alienfleet[0].attack()
-    } else if (alienfleet.length <= 0) {
-        winnerwinner()
-    } 
+        // } else if (alienfleet.length <= 0) {
+        //     winnerwinner()
+        // } 
+    } else {
+        console.log ("THIS IS MY BUG. Works if else/if statement, but not else only. then winner pops up occassionally when it shouldn't")
+    }
 }
 
 function flee() { 
