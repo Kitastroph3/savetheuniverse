@@ -16,7 +16,7 @@ class alien extends ship{
         super(a,
         b = Math.floor(Math.random() * 4) + 3,
         c = Math.floor(Math.random() * 3) + 2,
-            d = (Math.floor(Math.random() * 3) + 6) / 10,)
+        d = (Math.floor(Math.random() * 3) + 6) / 10,)
     }
     attack() { 
         if (Math.random() <= alienfleet[0].accuracy) {
@@ -39,7 +39,7 @@ const ussAssembly = new ship("USS Assembly", 20, 5, .7)
 //----> create array of alien ships and remove once hull = 0???
 const alienfleet = []
 for (let i = 0; i < 6; i++) { 
-    alienfleet.push(new alien(`Alien${i+1}`, 0, 0, 0))
+    alienfleet.push(new alien(`Alien ${i+1}`, 0, 0, 0))
 }
 //next alien removes alien ship from beginning of the array
 const nextalien = function () {
@@ -51,10 +51,11 @@ const nextalien = function () {
 //--------------------------------------------------------------
 // 2. QUERIES
 const fight = document.querySelector('#fight')
+const fly = document.querySelector('#fly')
 //----------------------------------------------------------
-//3. CALL/INVOKE FUNCTIONS
+//3. FUNCTIONS
 function attack() {
-    //step 1: you shoot alien
+    //step 1: you shoot at alien
     //  you hit alien
     if (alienfleet.length > 0 && Math.random() < ussAssembly.accuracy) {
         alienfleet[0].takedamage(ussAssembly.firepower)
@@ -72,7 +73,29 @@ function attack() {
     } else if (alienfleet.length > 0 && Math.random() >= ussAssembly.accuracy) {
         console.log("your hit misses!")
         alienfleet[0].attack()
-    // } else {
-    //     console.log("this is my bug and should be 'you win'")
-    }
+    } else if (alienfleet.length <= 0) {
+        winnerwinner()
+    } 
+}
+
+function flee() { 
+    console.log ("Phew that was close!")
+}
+
+function winnerwinner() {
+    console.log ("You win!")
+}
+
+function alienstats() { 
+    console.log(alienfleet[0].name,
+        `hull:`, alienfleet[0].hull,
+        `firepower:`, alienfleet[0].firepower,
+        `accuracy:`, alienfleet[0].accuracy)
+}
+
+function ussAssemblystats() { 
+    console.log(ussAssembly.name,
+        `hull:`, ussAssembly.hull,
+        `firepower:`, ussAssembly.firepower,
+        `accuracy:`, ussAssembly.accuracy)
 }
