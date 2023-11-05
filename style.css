@@ -1,39 +1,41 @@
 body {
     background-color: black;
     background-image: url("cockpit.png");
-    margin-top: 15em;
-    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin-top: 5em;
 }
 
 #gamespace {
     border: 5px solid darkgray;
     background-color: black;
-    display: flex;
-    flex-wrap: row;
-    justify-content: space-between;
     margin: auto;
     width: 80%;
+    display: block;
     height: 200px;
     border-radius: 30px;
 }
 
 #aliens {
-    display: inline-block;
-    justify-content: right;
-    width: 100px;
-    margin-top: auto;
-    margin-bottom: auto;
-    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .alien {
     height: 50px;
+    padding-top: 50px;
+}
+.aliena {
+    height: 50px;
+    padding-bottom: 50px;
 }
 
 #controlpanel {
     display: flex;
     justify-content: center;
     margin: 40px;
+    background-color: gray;
 }
 
 button {
@@ -56,3 +58,5 @@ button:hover {
     border: 5px solid darkgray;
     background-color: red;
 }
+
+#

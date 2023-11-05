@@ -10,24 +10,32 @@
     </head>
     <body>
         <!-- Game Space-->
-        <div id="gamespace">
-            <!--Ship USS Assembly-->
-            <img id="USSship" src="USSship.png"></img>
+        <!-- <div id="gamespace"> -->
             <!--Alien Ship-->
             <div id="aliens">
+                <img class="aliena" src="alien.png"></img>
                 <img class="alien" src="alien.png"></img>
+                <img class="aliena" src="alien.png"></img>
                 <img class="alien" src="alien.png"></img>
-                <img class="alien" src="alien.png"></img>
-                <img class="alien" src="alien.png"></img>
-                <img class="alien" src="alien.png"></img>
+                <img class="aliena" src="alien.png"></img>
                 <img class="alien" src="alien.png"></img>
             </div>
-        </div>
+        <!-- </div> -->
             <div id="console">
-        </div>
+            </div>
         <div id="controlpanel">
+            <div class="stats">
+                <h3>Hull</h3>
+                <h3>Firepower</h3>
+                <h3>Accuracy</h3>
+            </div>
             <button type="button" id="fight" onclick="attack()">FIGHT</button>
             <button type="button" id="fly" onclick="flee()">FLY</button>  
+            <div class="stats">
+                <h3>Hull</h3>
+                <h3>Firepower</h3>
+                <h3>Accuracy</h3>
+            </div>
         </div>
         <script src="script.js" async defer></script>
     </body>
