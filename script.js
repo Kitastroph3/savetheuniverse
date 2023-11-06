@@ -1,5 +1,4 @@
 // 1. Creating ship class/ DECLARE DATA
-
 class Ship { 
     constructor(name, hull, firepower, accuracy) {
         this.name = name;
@@ -46,8 +45,17 @@ const alienfleet = []
 for (let i = 0; i < 6; i++) { 
     alienfleet.push(new Alien(`Alien ${i+1}`, 0, 0, 0))
 }
-//next alien removes alien ship from beginning of the array
-const nextalien = function () {
+//--------------------------------------------------------------
+// 2. QUERIES
+const fight = document.querySelector('#fight')
+const fly = document.querySelector('#fly')
+// let record = document.querySelector('#console')
+
+//----------------------------------------------------------
+//3. FUNCTIONS
+
+//fight next alien in fleet
+function nextalien() {
     if (alienfleet.length > 0) {
         alienfleet.shift()
         console.log(`The alien fleet has ${(alienfleet.length)} remaining ships`)
@@ -56,15 +64,12 @@ const nextalien = function () {
         }
     }
 }
-//--------------------------------------------------------------
-// 2. QUERIES
-const fight = document.querySelector('#fight')
-const fly = document.querySelector('#fly')
-//----------------------------------------------------------
-//3. FUNCTIONS
+
+//USS assembly attacks!
 function attack() {
-    //step 1: you shoot at alien
-    if (alienfleet.length > 0 && ussAssembly.hull > 0) { 
+    // parameters: the alien fleet has ships & the uss assembly has health (hull)
+    if (alienfleet.length > 0 && ussAssembly.hull > 0) {
+        //1. you shoot at alien and the hit lands
         if (Math.random() < ussAssembly.accuracy) {
             alienfleet[0].takedamage(ussAssembly.firepower)
             console.log("You shot the alien ship!")
@@ -80,14 +85,17 @@ function attack() {
                 alienstats()
                 alienfleet[0].attack()
             }
-            //C your attack misses
+        //2. you shoot at the alien and your attack misses
         } else {
             console.log("your hit misses!")
             alienstats()
             alienfleet[0].attack()
         }
+    // parameters not met & play again prompts. 
+    // USS loss determined by alien attack function. 
+    // USS win determined by nextalien function.    
     } else { 
-        winnerwinner()
+        console.log("playagain?")
     }
 }
 function flee() { 
