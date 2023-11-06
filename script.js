@@ -24,19 +24,24 @@ class Alien extends Ship{
             ussAssembly.takedamage(alienfleet[0].firepower)
             console.log('The alien ship shot at you!')
             addtolist('The alien ship shot you!')
+            updateScroll()
             if (ussAssembly.hull > 0) {
                 console.log('you got hit!')
                 addtolist('you got hit')
                 ussAssemblystats()
+                updateScroll()
             } else {
                 console.log("you died")
                 addtolist('you died')
+                updateScroll()
                 //play again?
             }
         } else {
             console.log('The enemy missed! No damage')
             addtolist('The enemy missed! No damage')
             ussAssemblystats()
+            updateScroll()
+
         }
     }
 }
@@ -53,7 +58,7 @@ for (let i = 0; i < 6; i++) {
 // 2. QUERIES
 const fight = document.querySelector('#fight')
 const fly = document.querySelector('#fly')
-const record = document.querySelector('#console')
+const record = document.querySelector('ul')
 //----------------------------------------------------------
 //3. FUNCTIONS
 
@@ -63,6 +68,7 @@ function nextalien() {
         alienfleet.shift()
         console.log(`The alien fleet has ${(alienfleet.length)} remaining ships`)
         addtolist(`The alien fleet has ${(alienfleet.length)} remaining ships`)
+        updateScroll()
         if (alienfleet.length === 0) {
             winnerwinner()
         }
@@ -78,17 +84,20 @@ function attack() {
             alienfleet[0].takedamage(ussAssembly.firepower)
             console.log("You shot the alien ship!")
             addtolist("You shot the alien")
+            updateScroll()
             //A alien neutralized
             if (alienfleet[0].hull <= 0) {
                 console.log("You neutralized an alien ship")
                 addtolist("You neutralized the alien ship!")
                 alienstats()
                 nextalien()
+                updateScroll()
             //B alien ship survives and shoots at you
             } else {
                 console.log("Hit landed... but it looks like the enemy target is still active")
                 addtolist("Hit landed... but it looks like the enemy target is still active")
                 //alien attacks
+                updateScroll()
                 alienstats()
                 alienfleet[0].attack()
             }
@@ -97,6 +106,7 @@ function attack() {
             console.log("your hit misses!")
             addtolist("your hit misses!")
             alienstats()
+            updateScroll()
             alienfleet[0].attack()
         }
     // parameters not met & play again prompts. 
@@ -135,4 +145,8 @@ function addtolist(newtext) {
     const text = document.createElement(`li`)
     text.textContent = newtext
     record.appendChild(text)
+}
+
+function updateScroll(){
+    record.scrollIntoView(false)
 }
